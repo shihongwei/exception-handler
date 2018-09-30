@@ -1,5 +1,7 @@
 package com.example.exceptionhandler.common;
 
+import org.springframework.util.StringUtils;
+
 public class ResultUtil {
 
     /**
@@ -9,20 +11,20 @@ public class ResultUtil {
      */
     public static <T> Result<T> success(T t) {
         Result<T> result = new Result<>();
-        result.setCode(0);
-        result.setMsg("成功");
+        result.setIsSuccess(Boolean.TRUE);
+        result.setResultCode(0);
+        result.setResultMessage("成功");
         result.setData(t);
         return result;
     }
 
-    public static Result success() {
-        return success(null);
-    }
+
 
     public static Result error(Integer code, String msg) {
         Result result = new Result();
-        result.setCode(code);
-        result.setMsg(msg);
+        result.setIsSuccess(Boolean.FALSE);
+        result.setResultCode(code == null ? -1 : code);
+        result.setResultMessage(StringUtils.isEmpty(msg) ? "失败" : msg);
         return result;
     }
 }

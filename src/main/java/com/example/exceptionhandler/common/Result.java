@@ -5,12 +5,11 @@ import lombok.Data;
 @Data
 public class Result<T> {
 
-    /** return code */
-    private Integer code;
+    private Boolean isSuccess;
 
-    /** return message */
-    private String  msg;
+    private Integer ResultCode;
 
-    /** return content */
+    private String  resultMessage;
+
     private T       data;
 }
